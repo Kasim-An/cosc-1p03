@@ -1,0 +1,23 @@
+package worldCloud;
+/**
+ * 
+ * @author Jiahui Xu
+ * ID 5716907
+ * jx14ds
+ */
+ class Node {
+
+  Word item;
+  Node next;
+
+  
+  Node( Word c, Node n)
+  {
+   
+   item = c;
+   next = n;
+   
+  }
+  
+  
+}//Node

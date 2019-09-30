@@ -1,0 +1,43 @@
+package worldCloud;
+/**
+ * 
+ * @author Jiahui Xu
+ * ID 5716907
+ * jx14ds
+ */
+
+public class Word {
+ 
+ private String word;
+ private int freq;
+ 
+ public Word( String a, int b)
+ {
+  
+  word = a;
+  freq = b;
+  
+ }//constructor
+
+ public String getWord()
+ {
+  
+  return word;
+  
+ }
+ 
+ public int getFreq()
+ {
+  return freq;
+  
+ }
+
+ public int theFreq(int a) 
+ {
+     freq = a;
+  return freq;
+  
+ }
+
+
+}

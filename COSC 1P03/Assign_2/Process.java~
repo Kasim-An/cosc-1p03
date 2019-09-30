@@ -1,0 +1,130 @@
+package worldCloud;
+
+import BasicIO.*;
+/**
+ * This class will process and find the frequency for each words in the file
+ * and display.
+ * @author Jiahui Xu
+ * ID:5716907
+ * jx14ds
+ */
+public class Process 
+{
+ private WordReader read;
+ private Node list;
+ private ASCIIDisplayer display;
+ 
+ public Process()
+ {
+  String words;
+  read = new WordReader();
+  display = new ASCIIDisplayer();
+  
+  for(;;)
+  {
+   
+   words = read.readWord();
+   search(words);
+                 if (read.isEOF())  break;
+  }
+  sortList();
+        printOut(list);
+ }// constructor
+ 
+ 
+ 
+ /**
+  *  This method will search the words and put into the link structure.
+  *  And insert a string to the front of the list
+  */
+ private void search(String words)
+ {
+  Node p;
+  Word word;
+  
+  p = list;
+  
+  for(;;)
+  {
+   if(p == null) break;
+   
+   if (words.equalsIgnoreCase(p.item.getWord())) //Use equalsIgnoreCase() can find the word which is capitalized
+   {
+                int frequency = p.item.getFreq();
+                p.item.theFreq(frequency + 1);
+                                       return;
+            }
+            p = p.next;
+                       
+  }
+  
+  word = new Word(words, 1);
+  
+        if (list == null) 
+        {
+            list = new Node(word, null);
+        } 
+        else 
+        {
+            Node q = new Node(word, null);
+            q.next = list;
+            list = q;
+        }
+  
+ }
+ 
+
+ /**
+  * Sort List
+  */
+
+ private void sortList() 
+ {
+
+        Node p;
+        Node q;
+        
+        p = list;
+        
+        if (list.next == null)  return;
+        
+        while (p != null) 
+        {
+            q = p.next;
+            while (q != null) 
+            {
+                if (p.item.getFreq() < q.item.getFreq())
+                {
+                    Word word = p.item;
+                    p.item = q.item;
+                    q.item = word;
+                }
+                q = q.next;
+            }
+            p = p.next;
+        }
+    }
+ 
+ /**
+  * Display the list
+  */
+ 
+ private void printOut(Node list) {
+        Node p;
+        p = list;
+        while (p != null) {
+
+            display.writeInt(p.item.getFreq());
+            display.writeString(p.item.getWord());
+            display.newLine();
+
+            p = p.next;
+        }
+
+        display.close();
+    }
+ 
+ 
+ public static void main(String[] args) {Process a = new Process();}
+
+}//End of the program
